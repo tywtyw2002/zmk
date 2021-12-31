@@ -17,18 +17,30 @@
 		zephyr,flash = &flash0;
 	};
 
+	vbatt {
+		compatible = "zmk,battery-voltage-divider";
+		label = "BATTERY";
+		io-channels = <&adc 0>;
+		output-ohms = <1000000>;
+		full-ohms = <(1000000 + 1000000)>;
+	};
+
 	leds {
 		compatible = "gpio-leds";
-		red_led: led_0 {
-			gpios = <&gpio0 30 GPIO_ACTIVE_HIGH>;
+		pwr_led: led_0 {
+			gpios = <&gpio1 04 GPIO_ACTIVE_HIGH>;
+			label = "Power LED";
+		};
+		red_led: led_1 {
+			gpios = <&gpio0 30 GPIO_ACTIVE_LOW>;
 			label = "Red LED";
 		};
-		green_led: led_1 {
-			gpios = <&gpio0 29 GPIO_ACTIVE_HIGH>;
+		green_led: led_2 {
+			gpios = <&gpio0 29 GPIO_ACTIVE_LOW>;
 			label = "Green LED";
 		};
-		blue_led: led_2 {
-			gpios = <&gpio0 31 GPIO_ACTIVE_HIGH>;
+		blue_led: led_3 {
+			gpios = <&gpio0 31 GPIO_ACTIVE_LOW>;
 			label = "Blue LED";
 		};
 	};
@@ -56,6 +68,26 @@
 	status = "okay";
 };
 
+&qspi {
+	status = "okay";
+	sck-pin = <43>;
+	io-pins = <42>, <46>, <47>, <44>;
+	csn-pins = <45>;
+	mx25r64: mx25r6435f@0 {
+		compatible = "nordic,qspi-nor";
+		reg = <0>;
+		writeoc = "pp4io";
+		readoc = "read4io";
+		sck-frequency = <8000000>;
+		label = "MX25R64";
+		jedec-id = [c2 28 17];
+		size = <67108864>;
+		has-be32k;
+		has-dpd;
+		t-enter-dpd = <10000>;
+		t-exit-dpd = <35000>;
+	};
+};
 
 &flash0 {
 	/*
