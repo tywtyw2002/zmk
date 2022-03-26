@@ -15,7 +15,7 @@ static void button_pressed(const struct device *dev, struct gpio_callback *cb,
                uint32_t pins)
 {
     const struct device *p0 = device_get_binding("GPIO_0");
-    gpio_pin_set(p0, 28, 1);
+    gpio_pin_set(p0, 28, 0);
 
 }
 
@@ -37,7 +37,13 @@ static int pinmux_nrf52840_m2_init(const struct device *port) {
 
     const struct device *p0 = device_get_binding("GPIO_0");
     gpio_pin_configure(p0, 28, GPIO_OUTPUT);
-    gpio_pin_set(p0, 28, 0);
+    gpio_pin_set(p0, 28, 1);
+
+    configure_button(p0);
+
+    const struct device *p1 = device_get_binding("GPIO_1");
+    gpio_pin_configure(p1, 4, GPIO_OUTPUT);
+    gpio_pin_set(p1, 4, 0);
 
     configure_button(p0);
 

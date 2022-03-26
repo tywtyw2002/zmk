@@ -27,10 +27,10 @@
 
 	leds {
 		compatible = "gpio-leds";
-		pwr_led: led_0 {
-			gpios = <&gpio1 04 GPIO_OUTPUT_INACTIVE>;
-			label = "Power LED";
-		};
+		// pwr_led: led_0 {
+		// 	gpios = <&gpio1 04 GPIO_ACTIVE_LOW>;
+		// 	label = "Power LED";
+		// };
 		red_led: led_1 {
 			gpios = <&gpio0 30 GPIO_ACTIVE_HIGH>;
 			label = "Red LED";
@@ -68,26 +68,26 @@
 	status = "okay";
 };
 
-// &qspi {
-// 	status = "okay";
-// 	sck-pin = <43>;
-// 	io-pins = <42>, <46>, <47>, <44>;
-// 	csn-pins = <45>;
-// 	mx25r64: mx25r6435f@0 {
-// 		compatible = "nordic,qspi-nor";
-// 		reg = <0>;
-// 		writeoc = "pp4io";
-// 		readoc = "read4io";
-// 		sck-frequency = <8000000>;
-// 		label = "MX25R64";
-// 		jedec-id = [c2 28 17];
-// 		size = <67108864>;
-// 		has-be32k;
-// 		has-dpd;
-// 		t-enter-dpd = <10000>;
-// 		t-exit-dpd = <35000>;
-// 	};
-// };
+/*&qspi {
+	status = "okay";
+	sck-pin = <43>;
+	io-pins = <42>, <46>, <47>, <44>;
+	csn-pins = <45>;
+	mx25r64: mx25r6435f@0 {
+		compatible = "nordic,qspi-nor";
+		reg = <0>;
+		writeoc = "pp4io";
+		readoc = "read4io";
+		sck-frequency = <8000000>;
+		label = "MX25R64";
+		jedec-id = [c2 28 17];
+		size = <67108864>;
+		has-be32k;
+		has-dpd;
+		t-enter-dpd = <10000>;
+		t-exit-dpd = <35000>;
+	};
+};*/
 
 &flash0 {
 	/*
