@@ -28,7 +28,7 @@
 	leds {
 		compatible = "gpio-leds";
 		// pwr_led: led_0 {
-		// 	gpios = <&gpio1 04 GPIO_ACTIVE_LOW>;
+		// 	gpios = <&gpio1 07 GPIO_ACTIVE_LOW>;
 		// 	label = "Power LED";
 		// };
 		red_led: led_1 {
@@ -68,7 +68,7 @@
 	status = "okay";
 };
 
-/*&qspi {
+&qspi {
 	status = "okay";
 	sck-pin = <43>;
 	io-pins = <42>, <46>, <47>, <44>;
@@ -87,7 +87,7 @@
 		t-enter-dpd = <10000>;
 		t-exit-dpd = <35000>;
 	};
-};*/
+};
 
 &flash0 {
 	/*

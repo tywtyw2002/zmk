@@ -41,11 +41,11 @@ static int pinmux_nrf52840_m2_init(const struct device *port) {
 
     configure_button(p0);
 
-    const struct device *p1 = device_get_binding("GPIO_1");
-    gpio_pin_configure(p1, 4, GPIO_OUTPUT);
-    gpio_pin_set(p1, 4, 0);
+    // const struct device *p1 = device_get_binding("GPIO_1");
+    // gpio_pin_configure(p1, 4, GPIO_OUTPUT);
+    // gpio_pin_set(p1, 4, 0);
 
-    configure_button(p0);
+    // configure_button(p0);
 
     return 0;
 }
