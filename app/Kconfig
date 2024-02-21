@@ -502,8 +502,8 @@ config ZMK_USB_LOGGING
     bool "Enable USB CDC ACM logging to help debug"
     select LOG
     select USB
-    select USB_DEVICE_STACK
-    select USB_CDC_ACM
+    #select USB_DEVICE_STACK
+    #select USB_CDC_ACM
     select SERIAL
     select CONSOLE
     select UART_INTERRUPT_DRIVEN

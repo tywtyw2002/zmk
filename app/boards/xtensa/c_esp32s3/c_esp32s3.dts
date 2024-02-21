@@ -1,0 +1,153 @@
+/*
+ * Copyright (c) 2023 Seeed Studio inc.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/dts-v1/;
+
+#include <espressif/esp32s3/esp32s3_wroom_n16r2.dtsi>
+// #include "c_esp32s3-pinctrl.dtsi"
+// #include "seeed_xiao_connector.dtsi"
+
+/ {
+	model = "CosHiM ESP32S3";
+	compatible = "coshim,c-esp32s3";
+
+	chosen {
+		zephyr,sram = &sram0;
+		zephyr,console = &usb_serial;
+		zephyr,shell-uart = &usb_serial;
+		zephyr,flash = &flash0;
+		zephyr,code-partition = &slot0_partition;
+	};
+
+	aliases {
+		// i2c-0 = &i2c0;
+		// watchdog0 = &wdt0;
+		led0 = &led0;
+	};
+
+	leds {
+		compatible = "gpio-leds";
+		led0: led_0 {
+			gpios = <&gpio0 38 GPIO_ACTIVE_HIGH>;
+			label = "BUILTIN LED";
+		};
+	};
+
+};
+
+&cpu0 {
+	clock-frequency = <ESP32_CLK_CPU_240M>;
+};
+
+&cpu1 {
+	clock-frequency = <ESP32_CLK_CPU_240M>;
+};
+
+&usb_serial {
+	status = "okay";
+};
+
+// &usbd {
+//     status = "okay";
+//     cdc_acm_uart: cdc_acm_uart {
+//         compatible = "zephyr,cdc-acm-uart";
+//     };
+// };
+
+// &uart0 {
+// 	status = "okay";
+// 	current-speed = <115200>;
+// 	pinctrl-0 = <&uart0_default>;
+// 	pinctrl-names = "default";
+// };
+
+// &i2c0 {
+// 	status = "okay";
+// 	clock-frequency = <I2C_BITRATE_STANDARD>;
+// 	pinctrl-0 = <&i2c0_default>;
+// 	pinctrl-names = "default";
+// };
+
+&trng0 {
+	status = "okay";
+};
+
+// &spi2 {
+// 	#address-cells = <1>;
+// 	#size-cells = <0>;
+// 	status = "okay";
+// 	pinctrl-0 = <&spim2_default>;
+// 	pinctrl-names = "default";
+// };
+
+&gpio0 {
+	status = "okay";
+};
+
+&gpio1 {
+	status = "okay";
+};
+
+// &wdt0 {
+// 	status = "okay";
+// };
+
+// &twai {
+// 	pinctrl-0 = <&twai_default>;
+// 	pinctrl-names = "default";
+// 	bus-speed = <125000>;
+// };
+
+// &timer0 {
+// 	status = "okay";
+// };
+
+// &timer1 {
+// 	status = "okay";
+// };
+
+// &adc {
+//     status = "okay";
+// };
+
+&flash0 {
+	status = "okay";
+	partitions {
+		compatible = "fixed-partitions";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		/* Reserve 64kB for the bootloader */
+		boot_partition: partition@0 {
+			label = "mcuboot";
+			reg = <0x00000000 0x00010000>;
+			read-only;
+		};
+
+		/* Reserve 1024kB for the application in slot 0 */
+		slot0_partition: partition@10000 {
+			label = "image-0";
+			reg = <0x00010000 0x00100000>;
+		};
+
+		/* Reserve 1024kB for the application in slot 1 */
+		slot1_partition: partition@110000 {
+			label = "image-1";
+			reg = <0x00110000 0x00100000>;
+		};
+
+		/* Reserve 256kB for the scratch partition */
+		scratch_partition: partition@210000 {
+			   label = "image-scratch";
+			   reg = <0x00210000 0x00040000>;
+		};
+
+		storage_partition: partition@250000 {
+			label = "storage";
+			reg = <0x00250000 0x00006000>;
+		};
+	};
+};

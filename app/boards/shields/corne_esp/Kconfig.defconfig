@@ -1,0 +1,4 @@
+if SHIELD_CORNE_ESP
+config ZMK_KEYBOARD_NAME
+    default "C ESP32"
+endif

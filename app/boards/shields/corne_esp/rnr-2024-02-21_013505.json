@@ -1,0 +1,21 @@
+{
+  "date": "2024-02-21 01:35:05",
+  "operations": [
+    {
+      "source": "./corne_esp_test.conf",
+      "target": "./corne_esp.conf"
+    },
+    {
+      "source": "./corne_esp_test.keymap",
+      "target": "./corne_esp.keymap"
+    },
+    {
+      "source": "./corne_esp_test.zmk.yml",
+      "target": "./corne_esp.zmk.yml"
+    },
+    {
+      "source": "./corne_esp_test.dtsi",
+      "target": "./corne_esp.dtsi"
+    }
+  ]
+}

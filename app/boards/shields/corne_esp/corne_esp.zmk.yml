@@ -1,0 +1,14 @@
+file_format: "1"
+id: corne_esp
+name: Corne Test
+type: shield
+url: https://github.com/foostan/crkbd/
+requires: [c_esp32s3_corne]
+# exposes: [i2c_oled]
+features:
+  - keys
+  # - display
+  # - underglow
+# siblings:
+#   - corne_left
+#   - corne_right

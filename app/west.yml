@@ -6,8 +6,11 @@ manifest:
       url-base: https://github.com/zmkfirmware
   projects:
     - name: zephyr
-      remote: zmkfirmware
-      revision: v3.5.0+zmk-fixes
+      remote: zephyrproject-rtos
+      revision: main
+      # path: /Users/tyw/git/esp32_test/zephyr
+      # remote: zmkfirmware
+      # revision: v3.5.0+zmk-fixes
       clone-depth: 1
       import:
         name-blocklist:

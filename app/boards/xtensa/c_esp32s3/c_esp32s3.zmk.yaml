@@ -1,0 +1,9 @@
+file_format: "1"
+id: c_esp32s3
+name: CosHiM ESP32S3 Corne
+type: board
+arch: xtensa
+outputs:
+  - usb
+  - ble
+exposes: [c_esp32s3_corne]
