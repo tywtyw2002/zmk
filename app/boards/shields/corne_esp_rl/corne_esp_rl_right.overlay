@@ -1,0 +1,5 @@
+#include "corne_esp_rl.dtsi"
+
+&default_transform {
+    col-offset = <6>;
+};

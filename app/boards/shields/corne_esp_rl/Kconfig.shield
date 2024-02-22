@@ -1,0 +1,11 @@
+# Copyright (c) 2020 Pete Johanson
+# SPDX-License-Identifier: MIT
+
+config SHIELD_CORNE_ESP_RL_LEFT
+    def_bool $(shields_list_contains,corne_esp_rl_left)
+
+config SHIELD_CORNE_ESP_RL_RIGHT
+    def_bool $(shields_list_contains,corne_esp_rl_right)
+
+#config SHIELD_CORNE_ESP
+#    def_bool $(shields_list_contains,corne_esp)

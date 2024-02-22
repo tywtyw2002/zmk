@@ -1,0 +1,16 @@
+if SHIELD_CORNE_ESP_RL_LEFT
+
+config ZMK_KEYBOARD_NAME
+    default "C ESP"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif
+
+if SHIELD_CORNE_ESP_RL_LEFT || SHIELD_CORNE_ESP_RL_RIGHT
+
+config ZMK_SPLIT
+    default y
+
+endif
