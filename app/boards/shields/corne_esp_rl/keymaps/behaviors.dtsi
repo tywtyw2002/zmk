@@ -1,0 +1,214 @@
+// mod - tap
+&mt {
+  flavor = "balanced";
+  tapping-term-ms = <TAPPING_TERM_MS>;
+  quick-tap-ms = <QUICK_TAP_MS>;
+  // global-quick-tap-ms = <GLOBAL_QUICK_TAP_MS>;
+};
+
+//layer tap
+&lt {
+  flavor = "balanced";
+  tapping-term-ms = <TAPPING_TERM_MS>;
+  quick-tap-ms = <QUICK_TAP_MS>;
+  // global-quick-tap-ms = <GLOBAL_QUICK_TAP_MS>;
+};
+
+// sticky key
+&sk {
+  quick-release;
+};
+
+
+/ {
+  behaviors {
+    /*
+     Shift & space
+     - Tap preferred
+     - Tap Space
+     - Hold Shift
+    */
+    /omit-if-no-ref/ space_shift: space_shift {
+      // label = "SPACE_SHIFT";
+      flavor = "tap-preferred";
+      compatible = "zmk,behavior-hold-tap";
+      tapping-term-ms = <500>;
+      quick-tap-ms = <QUICK_TAP_MS>;
+      // global-quick-tap-ms = <GLOBAL_QUICK_TAP_MS>;
+      bindings = <&kp>, <&kp>;
+      #binding-cells = <2>;
+    };
+
+    /*
+     - tap: sticky shift
+     - double-tap: caps-word (shift + tap mod-morph)
+     - hold: shift
+
+     From: https://github.com/urob/zmk-config/
+     */
+    /omit-if-no-ref/ smart_shift: smart_shift {
+      // label = "SMART_SHIFT";
+      compatible = "zmk,behavior-mod-morph";
+      bindings = <&sk RSHFT>, <&caps_word>;
+      mods = <(MOD_RSFT)>;
+      #binding-cells = <0>;
+    };
+
+    /*
+     - tap: layer_dance
+     - hold: &mo layer
+
+     From: https://github.com/urob/zmk-config/
+     */
+    /omit-if-no-ref/ slayer_1: slayer_1 {
+      // label = "SMART_LAYER_1";
+      compatible = "zmk,behavior-hold-tap";
+      flavor = "balanced";
+      tapping-term-ms = <TAPPING_TERM_MS>;
+      // global-quick-tap-ms = <GLOBAL_QUICK_TAP_MS>;
+      bindings = <&mo>, <&layer_dance_1>;
+      #binding-cells = <2>;
+    };
+
+    /omit-if-no-ref/ slayer_2: slayer_2 {
+      // label = "SMART_LAYER_2";
+      compatible = "zmk,behavior-hold-tap";
+      flavor = "balanced";
+      tapping-term-ms = <TAPPING_TERM_MS>;
+      // global-quick-tap-ms = <GLOBAL_QUICK_TAP_MS>;
+      bindings = <&mo>, <&layer_dance_2>;
+      #binding-cells = <2>;
+    };
+
+
+    /*
+     - tap: &sl
+     - tap x 2: &tog
+
+     From: https://github.com/urob/zmk-config/
+     */
+    /omit-if-no-ref/ layer_dance_1: layer_dance_1 {
+      // label = "LAYER_DANCE_1";
+      compatible = "zmk,behavior-tap-dance";
+      tapping-term-ms = <TAPPING_TERM_MS>;
+      bindings = <&sl L1>, <&tog L1>;
+      #binding-cells = <0>;
+    };
+    /omit-if-no-ref/ layer_dance_2: layer_dance_2 {
+      // label = "LAYER_DANCE_2";
+      compatible = "zmk,behavior-tap-dance";
+      tapping-term-ms = <TAPPING_TERM_MS>;
+      bindings = <&sl L2>, <&tog L2>;
+      #binding-cells = <0>;
+    };
+
+    /*
+     - tap: &kp <PARAM_2>
+     - hold: &none
+
+     Example: &nh 0 K_CANCEL
+     */
+    // /omit-if-no-ref/ nh: no_hold {
+    //   label = "NO_HOLD";
+    //   compatible = "zmk,behavior-hold-tap";
+    //   flavor = "balanced";
+    //   tapping-term-ms = <TAPPING_TERM_MS>;
+    //   bindings = <&none>, <&kp>;
+    //   #binding-cells = <2>;
+    // };
+
+    /*
+     - tap: sticky ctrl
+     - hold: ctrl
+     - double-tap: sticky meh (ctrl + tap mod-morph)
+     - tap + hold: meh (ctrl + hold mod-morph)
+
+     From: https://github.com/urob/zmk-config/
+     */
+    // /omit-if-no-ref/ ctrl_meh: ctrl_meh {
+    //   label = "CTRL_MEH";
+    //   compatible = "zmk,behavior-mod-morph";
+    //   bindings = <&sk LCTRL>, <&sk MEH>;
+    //   mods = <(MOD_LCTL)>;
+    //   #binding-cells = <0>;
+    // };
+
+    /*
+     - tap: backspace
+     - hold: repeat backspace
+     - shift + tap: delete
+     - shift + hold: repeat delete
+
+     From: https://zmk.dev/docs/behaviors/mod-morph#advanced-configuration
+     */
+    /omit-if-no-ref/ bkspc_del: backspace_delete {
+      label = "BACKSPACE_DELETE";
+      compatible = "zmk,behavior-mod-morph";
+      bindings = <&kp BACKSPACE>, <&kp DELETE>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+      #binding-cells = <0>;
+    };
+
+    /*
+      - tap: bt clear
+      - shift + tap: bt clear all
+    */
+    /omit-if-no-ref/ bt_clear: bt_clear {
+      label = "BT_CLEAR";
+      compatible = "zmk,behavior-mod-morph";
+      bindings = <&bt BT_CLR>, <&bt BT_CLR_ALL>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+      #binding-cells = <0>;
+    };
+
+    /*
+      - tap: none
+      - shift + tap: to system layer
+    */
+    /omit-if-no-ref/ to_system: to_system {
+      label = "TO_SYSTEM";
+      compatible = "zmk,behavior-mod-morph";
+      bindings = <&none>, <&tog L9>;
+      mods = <(MOD_RSFT)>;
+      #binding-cells = <0>;
+    };
+
+    /*
+     - tap: brightness up
+     - hold: repeat brightness up
+     - shift + tap: brightness down
+     - shift + hold: repeat brightness down
+     */
+    /omit-if-no-ref/ brightness: brightness {
+      label = "BRIGHTNESS";
+      compatible = "zmk,behavior-mod-morph";
+      bindings = <&kp C_BRI_UP>, <&kp C_BRI_DN>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+      #binding-cells = <0>;
+    };
+
+    /*
+     - tap: next track
+     - shift + tap: prev track
+     */
+    /omit-if-no-ref/ next_prev: next_prev {
+      label = "NEXT_PREV_TRACK";
+      compatible = "zmk,behavior-mod-morph";
+      bindings = <&kp C_NEXT>, <&kp C_PREV>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+      #binding-cells = <0>;
+    };
+
+    /*
+     - tap: volume up
+     - shift + tap: volume down
+     */
+    /omit-if-no-ref/ volume: volume {
+      label = "VOLUME";
+      compatible = "zmk,behavior-mod-morph";
+      bindings = <&kp C_VOL_UP>, <&kp C_VOL_DN>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+      #binding-cells = <0>;
+    };
+  };
+};
