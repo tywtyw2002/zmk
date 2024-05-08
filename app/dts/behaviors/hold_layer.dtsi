@@ -1,0 +1,14 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+/ {
+    behaviors {
+        /omit-if-no-ref/ hold_layer: hold_layer {
+            compatible = "zmk,behavior-hold-layer";
+            #binding-cells = <1>;
+        };
+    };
+};

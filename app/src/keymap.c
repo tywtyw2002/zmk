@@ -28,6 +28,7 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 static zmk_keymap_layers_state_t _zmk_keymap_layer_state = 0;
 static uint8_t _zmk_keymap_layer_default = 0;
+static uint8_t _zmk_keymap_layer_hold = 0;
 
 #define DT_DRV_COMPAT zmk_keymap
 
@@ -86,6 +87,12 @@ static inline int set_layer_state(uint8_t layer, bool state) {
         return 0;
     }
 
+    if (_zmk_keymap_layer_hold > 0 && _zmk_keymap_layer_hold == layer && !state) {
+        // Hold on layer deactive, and reset layer hold.
+        _zmk_keymap_layer_hold = 0;
+        return 0;
+    }
+
     zmk_keymap_layers_state_t old_state = _zmk_keymap_layer_state;
     WRITE_BIT(_zmk_keymap_layer_state, layer, state);
     // Don't send state changes unless there was an actual change
@@ -126,6 +133,8 @@ uint8_t zmk_keymap_highest_layer_active(void) {
 int zmk_keymap_layer_activate(uint8_t layer) { return set_layer_state(layer, true); };
 
 int zmk_keymap_layer_deactivate(uint8_t layer) { return set_layer_state(layer, false); };
+
+int zmk_keymap_layer_hold(uint8_t layer) { _zmk_keymap_layer_hold = layer; return 0; };
 
 int zmk_keymap_layer_toggle(uint8_t layer) {
     if (zmk_keymap_layer_active(layer)) {
