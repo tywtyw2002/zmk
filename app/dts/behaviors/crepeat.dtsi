@@ -1,0 +1,14 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+/ {
+    behaviors {
+        /omit-if-no-ref/ cpt: crepeat {
+            compatible = "zmk,behavior-crepeat";
+            #binding-cells = <2>;
+        };
+    };
+};

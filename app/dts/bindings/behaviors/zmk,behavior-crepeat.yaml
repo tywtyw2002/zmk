@@ -1,0 +1,8 @@
+# Copyright (c) 2020 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+description: cRepeat Behavior
+
+compatible: "zmk,behavior-crepeat"
+
+include: two_param.yaml

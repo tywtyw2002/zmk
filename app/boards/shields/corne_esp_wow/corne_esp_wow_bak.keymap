@@ -1,0 +1,73 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+/ {
+    behaviors {
+        ht_space: ht_space {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HT_SPACE";
+            bindings = <&mo>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            flavor = "tap-preferred";
+        };
+
+        ht_shift: ht_shift {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HT_SHIFT";
+            bindings = <&kp>, <&sk>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "balanced";
+        };
+    };
+
+    macros {
+        m_space: m_space {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&mo 1 &kp SPACE>,
+                <&macro_pause_for_release>,
+                <&macro_release>,
+                <&mo 1 &kp SPACE>;
+
+            label = "M_SPACE";
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        base {
+            bindings = <
+&kp N3   &kp N2  &kp N1  &kp W  &kp E                    &kp R
+&kp TAB  &kp Q   &kp A   &kp S  &kp D                    &kp T
+&kp TAB  &kp Z   &kp X   &kp F  &kp V                    &kp G
+                         &mo 2  &ht_shift LSHIFT LSHIFT  &m_space
+            >;
+        };
+
+        space_ln {
+            bindings = <
+&kp RIGHT_BRACKET  &trans  &trans  &trans  &trans  &kp LA(R)
+&kp LEFT_BRACKET   &trans  &trans  &trans  &trans  &kp LA(T)
+&kp ESCAPE         &kp M   &trans  &trans  &trans  &kp B
+                                   &trans  &trans  &trans
+            >;
+        };
+
+        layer_2 {
+            bindings = <
+&kp N6   &kp N5  &kp N4           &trans  &kp Y   &kp U
+&trans   &trans  &trans           &trans  &trans  &trans
+&kp F12  &trans  &kp PRINTSCREEN  &trans  &trans  &trans
+                                  &trans  &trans  &trans
+            >;
+        };
+    };
+};
