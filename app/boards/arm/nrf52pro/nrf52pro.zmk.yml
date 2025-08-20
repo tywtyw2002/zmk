@@ -1,0 +1,10 @@
+file_format: "1"
+id: nrf52pro
+name: nrf52pro
+type: board
+arch: arm
+outputs:
+  - usb
+  - ble
+url: https://nicekeyboards.com/nice-nano
+exposes: [nrf52_pro]

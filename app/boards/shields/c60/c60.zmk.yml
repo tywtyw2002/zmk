@@ -1,0 +1,8 @@
+file_format: "1"
+id: c60
+name: CosHiM C60
+type: shield
+url: https://makerdiary.com/pages/m60-mechanical-keyboard
+requires: [nrf52_pro]
+features:
+  - keys
