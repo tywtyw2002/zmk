@@ -4,4 +4,10 @@ config BOARD_ENABLE_DCDC
     bool "Enable DCDC mode"
     select SOC_DCDC_NRF52X
     default y
-    depends on (BOARD_NICE_NANO || BOARD_NICE_NANO_V2)
+    depends on (BOARD_NRF54_PRO)
+
+config BOARD_ENABLE_DCDC_HV
+    bool "High voltage DCDC converter"
+    select SOC_DCDC_NRF52X_HV
+    default n
+    depends on (BOARD_NRF54_PRO)

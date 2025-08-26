@@ -6,3 +6,4 @@ url: https://makerdiary.com/pages/m60-mechanical-keyboard
 requires: [nrf52_pro]
 features:
   - keys
+  - studio
