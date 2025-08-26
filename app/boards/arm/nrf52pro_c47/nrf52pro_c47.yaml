@@ -1,0 +1,15 @@
+identifier: nrf52pro_c47
+name: nrf52pro_c47
+type: mcu
+arch: arm
+toolchain:
+  - zephyr
+  - gnuarmemb
+  - xtools
+supported:
+  - adc
+  - usb_device
+  - ble
+  - ieee802154
+  - pwm
+  - watchdog
