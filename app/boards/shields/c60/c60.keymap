@@ -18,6 +18,15 @@
 #include <dt-bindings/zmk/bt.h>
 
 / {
+
+    behaviors {
+        /omit-if-no-ref/ cf: cf {
+            compatible = "zmk,behavior-cfire";
+            repeat-term-ms = <200>;
+            // bindings = <&kp>;
+            #binding-cells = <1>;
+        };
+    };
     keymap {
         compatible = "zmk,keymap";
 
@@ -45,7 +54,7 @@
         layer_PN_SET {
             bindings = <
   &none   &none   &none   &none   &none   &none            &none   &none   &none   &none   &none   &none   &none   &none
-  &none   &none   &none   &none   &none   &none            &none   &none   &none   &none   &none   &none   &none   &none
+  &none   &none   &none   &cf E   &cf R   &none            &none   &none   &none   &none   &none   &none   &none   &none
   &none   &none   &none   &none   &none   &none            &none   &none   &none   &none   &none   &none   &none
   &none   &none   &none   &none   &none  &tog 3            &none   &none   &none   &none   &none   &none
   &none   &none   &none  &tog 1   &none   &none            &none   &none
