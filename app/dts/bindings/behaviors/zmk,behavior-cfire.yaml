@@ -1,0 +1,13 @@
+# Copyright (c) 2020 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+description: cFire Behavior
+
+compatible: "zmk,behavior-cfire"
+
+include: one_param.yaml
+
+properties:
+  repeat-term-ms:
+    type: int
+    default: 200
