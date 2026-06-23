@@ -1,0 +1,2 @@
+config SHIELD_C25
+    def_bool $(shields_list_contains,c25)

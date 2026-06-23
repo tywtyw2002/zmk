@@ -1,0 +1,6 @@
+if SHIELD_C25_KEYBOARD
+
+config ZMK_KEYBOARD_NAME
+    default "c25"
+
+endif

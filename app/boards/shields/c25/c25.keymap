@@ -1,0 +1,57 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer { // Layer 0
+            display-name = "Base";
+            bindings = <
+                &kp N1    &kp A    &kp B   &kp C    &kp D
+                &kp N2    &kp E    &kp F   &kp M    &kp K
+                &kp N3    &kp E    &kp F   &kp M    &kp K
+                &kp N4    &kp E    &kp F   &kp M    &kp K
+                &kp N5    &kp E    &kp F   &kp M    &kp K
+            >;
+        };
+
+        fn_layer {
+            display-name = "Fn";
+            bindings = <
+                &none &none &none &none &none
+                &none &none &none &none &none
+                &none &none &none &none &none
+                &none &none &none &none &none
+                &none &none &none &none &none
+            >;
+        };
+
+        extra1 {
+            status = "reserved";
+        };
+
+        extra2 {
+            status = "reserved";
+        };
+
+        extra3 {
+            status = "reserved";
+        };
+
+        extra4 {
+            status = "reserved";
+        };
+
+        pn_layer {
+            display-name = "Pn";
+            bindings = <
+                &none &none &none &none &none
+                &none &none &none &none &none
+                &none &none &none &none &none
+                &none &none &none &none &none
+                &none &none &none &none &none
+            >;
+        };
+    };
+ };

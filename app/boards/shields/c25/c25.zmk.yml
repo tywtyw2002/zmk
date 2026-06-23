@@ -1,0 +1,9 @@
+file_format: "1"
+id: c25
+name: c25
+type: shield
+url: https://makerdiary.com/pages/m60-mechanical-keyboard
+requires: [rpi_pico]
+features:
+  - keys
+  - studio
